@@ -6,12 +6,18 @@
     </div>
     <div class="about-me">
       <span class="subtitle">In het kort</span>
+      <span class="text upperfirst">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin posuere enim at ipsum
+        eleifend,
+        interdum tempus sapien lobortis. Phasellus lectus risus, efficitur nec pharetra ac, luctus eget quam. Suspendisse
+        potenti. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer nec
+        metus cursus tortor interdum vestibulum in sit amet ex. Ut eu nulla sit amet tellus facilisis rhoncus id vel
+        leo.</span>
     </div>
     <div class="skills">
       <span class="subtitle">Ervaringen</span>
       <div class="skills__entries">
         <div class="skills__entry" v-for="skill in skills">
-          <span>{{ skill }}</span>
+          <span class="text">{{ skill }}</span>
         </div>
       </div>
     </div>
@@ -29,7 +35,8 @@ export default {
     return {
       heroText: {
         result: "Hallo! Ik ben Lucas van Borkulo!",
-        rendered: ""
+        rendered: new String(),
+        renderer: null,
       },
       skills: [
         "JavaScript",
@@ -51,13 +58,31 @@ export default {
     }
   },
   methods: {
+    /**
+     * Render the next step in the renderer.
+     * 
+     * @return {void}
+     */
     renderHeroText() {
-      if (this.heroText.result.length > this.heroText.rendered.length)
+      if (this.heroText.result.length > this.heroText.rendered.length) {
         this.heroText.rendered += this.heroText.result.charAt(this.heroText.rendered.length);
+      } else {
+        clearInterval(this.renderer);
+        setTimeout(this.startRenderHeroText, 3000);
+      }
+    },
+    /**
+     * Handle the runtime of the hero text renderer.
+     * 
+     * @return {void}
+     */
+    startRenderHeroText() {
+      this.heroText.rendered = new String();
+      this.renderer = setInterval(this.renderHeroText, 110);
     }
   },
   mounted() {
-    setInterval(this.renderHeroText, 110);
+    this.startRenderHeroText();
   }
 }
 </script>
@@ -93,6 +118,8 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 30px;
+    padding-inline: 48px;
   }
 
   .skills {
@@ -118,6 +145,13 @@ export default {
       display: flex;
       flex-direction: row;
       gap: 18px;
+    }
+  }
+
+  .upperfirst {
+    &::first-letter {
+      font-size: 150%;
+      margin-right: 1px;
     }
   }
 }
