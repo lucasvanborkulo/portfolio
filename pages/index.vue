@@ -2,31 +2,35 @@
   <div class="content">
     <Navigation />
     <div class="hero">
-      <span class="hero__text">{{ heroTextRendered }}</span>
+      <span class="hero__text">{{ heroText.rendered }}</span>
     </div>
-    <div class="carousel">
-
+    <div class="about-me">
+      <span class="subtitle">In het kort</span>
     </div>
     <div class="skills">
-      <h1>Ervaringen</h1>
+      <span class="subtitle">Ervaringen</span>
       <div class="skills__entries">
         <div class="skills__entry" v-for="skill in skills">
           <span>{{ skill }}</span>
         </div>
       </div>
     </div>
+    <Footer />
   </div>
 </template>
 
 <script>
+import Footer from '../components/Footer.vue';
 import Navigation from '../components/Navigation.vue';
 
 export default {
-  components: { Navigation },
+  components: { Navigation, Footer },
   data() {
     return {
-      heroText: "Hallo! Ik ben Lucas van Borkulo!",
-      heroTextRendered: "",
+      heroText: {
+        result: "Hallo! Ik ben Lucas van Borkulo!",
+        rendered: ""
+      },
       skills: [
         "JavaScript",
         "Java",
@@ -48,8 +52,8 @@ export default {
   },
   methods: {
     renderHeroText() {
-      if (this.heroText.length > this.heroTextRendered.length)
-        this.heroTextRendered += this.heroText.charAt(this.heroTextRendered.length);
+      if (this.heroText.result.length > this.heroText.rendered.length)
+        this.heroText.rendered += this.heroText.result.charAt(this.heroText.rendered.length);
     }
   },
   mounted() {
@@ -59,35 +63,56 @@ export default {
 </script>
 <style scoped lang="scss">
 .content {
+  .subtitle {
+    font-weight: 400;
+    font-size: 150%;
+  }
+
   .hero {
-    background-color: #222222;
+    background-color: #f8f8f8;
     height: calc(100vh - 80px - 140px);
     display: flex;
     align-items: center;
     justify-content: center;
 
     &__text {
-      color: #ffffff;
-      border-right: #ffffff solid 1px;
+      color: #000;
+      border-right: #000 solid 1px;
       padding-right: 1px;
       animation-name: typeIndicator;
-      animation-duration: 1000ms;
+      animation-duration: 1s;
       animation-iteration-count: infinite;
+      font-size: 300%;
     }
   }
 
-  .carousel {
-    background-color: #111111;
-    height: 140px;
-  }
-
-  .skills {
-    height: 250px;
-    background-color: #222222;
+  .about-me {
+    background-color: #ffffff;
+    height: 150px;
+    padding-block: 25px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: #ffffff;
+  }
+
+  .skills {
+    height: 200px;
+    background-color: #f8f8f8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    color: #000000;
+    padding-block: 25px;
+
+    &__entry {
+      transition-duration: 300ms;
+
+      &:hover {
+        font-size: 130%;
+        transition-duration: 300ms;
+      }
+    }
 
     &__entries {
       display: flex;
@@ -99,11 +124,11 @@ export default {
 
 @keyframes typeIndicator {
   0% {
-    border-right: #ffffff solid 1px;
+    border-right: #000 solid 2px;
   }
 
   100% {
-    border-right: none;
+    border-right: #00000000 solid 2px;
   }
 }
 </style>
