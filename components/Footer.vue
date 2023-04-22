@@ -14,7 +14,7 @@
     .credits {
         align-self: center;
         &__link {
-            color: #000;
+            color: #000000;
         }
     }
 }

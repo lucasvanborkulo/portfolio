@@ -101,8 +101,8 @@ export default {
     justify-content: center;
 
     &__text {
-      color: #000;
-      border-right: #000 solid 1px;
+      color: #000000;
+      border-right: #000000 solid 1px;
       padding-right: 1px;
       animation-name: typeIndicator;
       animation-duration: 1s;
@@ -158,7 +158,7 @@ export default {
 
 @keyframes typeIndicator {
   0% {
-    border-right: #000 solid 2px;
+    border-right: #000000 solid 2px;
   }
 
   100% {

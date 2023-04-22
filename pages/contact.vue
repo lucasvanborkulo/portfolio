@@ -13,7 +13,7 @@
         </div>
         <div class="field">
           <label>Bericht</label>
-          <textarea v-model="form.message" name="" id="" cols="30" rows="10" placeholder="Voer uw bericht in"></textarea>
+          <textarea v-model="form.message" cols="30" rows="10" placeholder="Voer uw bericht in"></textarea>
         </div>
         <button class="contact-form__submit" @click="submitForm">Versturen</button>
         <div class="contact-form__response" v-if="form.response.show" :class="{ error: form.response.error }">
@@ -47,13 +47,33 @@ export default {
   },
   methods: {
     /**
+     * Validate the form in the front-end.
+     * 
+     * @return {Boolean}
+     */
+    validateForm() {
+      const { name, email, message } = this.form;
+      if (name.length <= 2)
+        return false;
+      if (email.length <= 5)
+        return false;
+      if (message.length <= 6)
+        return false;
+
+      return true;
+    },
+    /**
      * Submit the form to the back-end.
      * 
      * @todo Add request logic to this function once back-end has been completed.
      * @return {void}
      */
     submitForm() {
-      this.sendResponse("Het formulier is verzonden!", false);
+      if (!this.validateForm()) {
+        this.sendResponse("Het formulier is niet compleet", true);
+        return;
+      }
+      this.sendResponse("Het formulier is verzonden");
     },
     /**
      * Send a response to the form user.
@@ -117,7 +137,7 @@ export default {
       }
 
       textarea {
-        resize: none;
+        resize: vertical;
       }
 
       textarea,
