@@ -1,5 +1,6 @@
 <template>
     <div class="navigation">
+        <CookiePopup />
         <div class="navigation__logo">
             <span>Lucas van Borkulo</span>
         </div>
@@ -58,4 +59,5 @@
     .nuxt-link-active {
         text-decoration: underline;
     }
-}</style>
+}
+</style>

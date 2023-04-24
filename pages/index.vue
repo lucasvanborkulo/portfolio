@@ -94,15 +94,14 @@ export default {
   }
 
   .hero {
-    background-color: #f8f8f8;
     height: calc(100vh - 80px - 140px);
     display: flex;
     align-items: center;
     justify-content: center;
 
     &__text {
-      color: #000000;
-      border-right: #000000 solid 1px;
+      color: #ffffff;
+      border-right: #ffffff solid 1px;
       padding-right: 1px;
       animation-name: typeIndicator;
       animation-duration: 1s;
@@ -124,20 +123,20 @@ export default {
 
   .skills {
     height: 200px;
-    background-color: #f8f8f8;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 30px;
-    color: #000000;
+    color: #ffffff;
     padding-block: 25px;
 
     &__entry {
-      transition-duration: 300ms;
+      font-size: 120%;
+      transition-duration: 150ms;
 
       &:hover {
-        font-size: 130%;
-        transition-duration: 300ms;
+        font-size: 140%;
+        transition-duration: 150ms;
       }
     }
 
@@ -158,11 +157,11 @@ export default {
 
 @keyframes typeIndicator {
   0% {
-    border-right: #000000 solid 2px;
+    border-right: #ffffff solid 2px;
   }
 
   100% {
-    border-right: #00000000 solid 2px;
+    border-right: #ffffff00 solid 2px;
   }
 }
 </style>
