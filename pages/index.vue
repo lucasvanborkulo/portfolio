@@ -30,6 +30,9 @@ import Footer from '../components/Footer.vue';
 import Navigation from '../components/Navigation.vue';
 
 export default {
+  head: {
+    title: "Home | Lucas van Borkulo"
+  },
   components: { Navigation, Footer },
   data() {
     return {
@@ -112,8 +115,7 @@ export default {
 
   .about-me {
     background-color: #ffffff;
-    height: 150px;
-    padding-block: 25px;
+    padding-block: 50px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -122,13 +124,13 @@ export default {
   }
 
   .skills {
-    height: 200px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    flex-wrap: wrap;
     gap: 30px;
     color: #ffffff;
-    padding-block: 25px;
+    padding-block: 50px;
 
     &__entry {
       font-size: 120%;

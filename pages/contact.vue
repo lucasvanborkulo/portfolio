@@ -30,6 +30,9 @@ import Footer from '../components/Footer.vue';
 import Navigation from '../components/Navigation.vue';
 
 export default {
+  head: {
+    title: "Contact | Lucas van Borkulo"
+  },
   components: { Navigation, Footer },
   data() {
     return {
